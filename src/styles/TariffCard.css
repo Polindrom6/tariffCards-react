@@ -1,0 +1,60 @@
+body {
+  background-color: rgb(240, 226, 213);
+}
+.tariff-card {
+  width: 180px;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.tariff-card:hover {
+  transform: scale(1.05);
+}
+
+.tariff-name {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.tariff-price {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.rub {
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.month {
+  font-size: 14px;
+  vertical-align: bottom;
+}
+.tariff-speed,
+.tariff-traffic {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.tariff-card:nth-child(1) {
+  background-color: #5f77c9;
+}
+.tariff-card:nth-child(2) {
+  background-color: #5ea562;
+}
+.tariff-card:nth-child(4) {
+  background-color: #4a4b4d;
+}
+.highlighted {
+  background-color: #cf4f4d !important;
+  box-shadow: 0 0 20px rgba(229, 57, 53, 0.7);
+
+  transform: scale(1.1);
+  z-index: 1;
+  margin: 0 10px;
+}
