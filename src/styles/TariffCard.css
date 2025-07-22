@@ -1,60 +1,118 @@
 body {
   background-color: rgb(240, 226, 213);
+  margin: 0;
+  font-family: sans-serif;
 }
-.tariff-card {
-  width: 180px;
+
+.tariff-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* расстояние между карточками */
+  justify-content: center;
   padding: 20px;
+}
+
+.tariff-card {
+  perspective: 1000px;
+  width: 200px; /* фиксированная ширина карточки */
+  height: 260px; /* фиксированная высота карточки */
+  cursor: pointer;
+  position: relative; /* чтобы flip не ломал поток */
+  flex-shrink: 0; /* карточки не сжимаются */
+}
+
+.tariff-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.tariff-card.flipped .tariff-card-inner {
+  transform: rotateY(180deg);
+}
+
+.tariff-card-front,
+.tariff-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
-  color: white;
   text-align: center;
-  transition: transform 0.3s;
+  padding: 20px;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.tariff-card:hover {
-  transform: scale(1.05);
+.tariff-card-front {
+  color: white;
+  z-index: 1; /* передняя сторона выше */
 }
 
-.tariff-name {
-  font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 10px;
+.tariff-card-back {
+  background-color: #333;
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.tariff-price {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.rub {
-  font-size: 14px;
-  vertical-align: top;
-}
-
-.month {
-  font-size: 14px;
-  vertical-align: bottom;
-}
-.tariff-speed,
-.tariff-traffic {
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.tariff-card:nth-child(1) {
-  background-color: #5f77c9;
-}
-.tariff-card:nth-child(2) {
-  background-color: #5ea562;
-}
-.tariff-card:nth-child(4) {
-  background-color: #4a4b4d;
-}
 .highlighted {
-  background-color: #cf4f4d !important;
   box-shadow: 0 0 20px rgba(229, 57, 53, 0.7);
+  transform: scale(1.05);
+  z-index: 10; /* выделенные карточки поверх других */
+}
 
-  transform: scale(1.1);
-  z-index: 1;
-  margin: 0 10px;
+.details-btn {
+  background-color: #cf4f4d;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details-btn:hover {
+  background-color: #b84342;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 80%;
+  color: #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content button {
+  margin-top: 10px;
+  background-color: #cf4f4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #b84342;
 }
